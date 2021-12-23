@@ -4,4 +4,5 @@ resource "aws_lambda_function" "instance" {
   role          = aws_iam_role.instance.arn
   handler       = "index.handler"
   runtime       = "nodejs14.x"
+  timeout       = 30 // seconds
 }
