@@ -12,9 +12,16 @@ exports.handler = async (event, context) => {
     var file = await sharp(Buffer.from(response.data), {
       density: 5000,
     })
-      .resize(1024, 1024)
+      .resize(body.width, body.height)
       .png()
       .toBuffer();
-    return file.toString("base64");
+
+    return {
+      cookies: [],
+      isBase64Encoded: true,
+      statusCode: 200,
+      headers: { "content-type": "image/png" },
+      body: file.toString("base64"),
+    };
   }
 };
