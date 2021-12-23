@@ -1,0 +1,4 @@
+{
+    "image": "amazon/aws-lambda-nodejs:14",
+    "extensions": ["esbenp.prettier-vscode"]
+}
