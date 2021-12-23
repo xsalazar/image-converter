@@ -3,7 +3,7 @@ const axios = require("axios");
 
 exports.handler = async (event, context) => {
   console.log(JSON.stringify(event));
-  if (event.body.imageSource) {
+  if (event.body) {
     var response = await axios.get(event.body.imageSource, {
       responseType: "arraybuffer",
     });
