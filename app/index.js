@@ -7,7 +7,9 @@ exports.handler = async (event, context) => {
       responseType: "arraybuffer",
     });
 
-    var file = await sharp(Buffer.from(response.data))
+    var file = await sharp(Buffer.from(response.data), {
+      density: 1000,
+    })
       .resize(1024, 1024)
       .png()
       .toBuffer();
