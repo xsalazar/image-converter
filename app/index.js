@@ -6,12 +6,13 @@ exports.handler = async (event, context) => {
     var response = await axios.get(event.imageSource, {
       responseType: "arraybuffer",
     });
+
     var file = await sharp(Buffer.from(response.data), {
       density: 100000,
     })
-      .resize(1024, 1024)
       .png()
-      .toBuffer()
+      .resize(1024, 1024)
+      .toBuffer();
     return file.toString("base64");
   }
 };
