@@ -2,9 +2,9 @@ resource "aws_apigatewayv2_api" "instance" {
   name          = "api-gateway"
   protocol_type = "HTTP"
   cors_configuration {
-    allow_origins = "*"
-    allow_methods = "*"
-    allow_headers = "*"
+    allow_origins = ["*"]
+    allow_methods = ["*"]
+    allow_headers = ["*"]
   }
 }
 
