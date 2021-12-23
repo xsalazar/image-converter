@@ -1,4 +1,4 @@
 {
-    "image": "node:14",
-    "extensions": ["esbenp.prettier-vscode"]
+  "image": "node:14",
+  "extensions": ["esbenp.prettier-vscode", "hashicorp.terraform"]
 }
