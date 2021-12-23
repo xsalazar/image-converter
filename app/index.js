@@ -2,9 +2,8 @@ const sharp = require("sharp");
 const axios = require("axios");
 
 exports.handler = async (event, context) => {
-  var body = JSON.parse(event.body);
-  if (body.imageSource) {
-    var response = await axios.get(body.imageSource, {
+  if (event.body.imageSource) {
+    var response = await axios.get(event.body.imageSource, {
       responseType: "arraybuffer",
     });
 
