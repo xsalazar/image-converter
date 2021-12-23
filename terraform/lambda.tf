@@ -5,4 +5,5 @@ resource "aws_lambda_function" "instance" {
   handler       = "index.handler"
   runtime       = "nodejs14.x"
   timeout       = 30 // seconds
+  memory_size   = 1536 // MB
 }
