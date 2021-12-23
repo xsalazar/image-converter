@@ -8,7 +8,7 @@ exports.handler = async (event, context) => {
     });
 
     var file = await sharp(Buffer.from(response.data), {
-      density: 1000,
+      density: 5000,
     })
       .resize(1024, 1024)
       .png()
