@@ -21,8 +21,8 @@ exports.handler = async (event, context) => {
 
     var imageSource = event.queryStringParameters.imageSource;
     var imageFormat = event.queryStringParameters.imageFormat;
-    var width = event.queryStringParameters.width;
-    var height = event.queryStringParameters.height;
+    var width = parseInt(event.queryStringParameters.width);
+    var height = parseInt(event.queryStringParameters.height);
 
     // Get image from internet
     var response = await axios.get(imageSource, {
