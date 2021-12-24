@@ -45,7 +45,7 @@ exports.handler = async (event, context) => {
       contentType = "image/png";
     }
 
-    file = file.resize(width, height).toBuffer().toString("base64");
+    file = (await file.resize(width, height).toBuffer()).toString("base64");
 
     return {
       cookies: [],
