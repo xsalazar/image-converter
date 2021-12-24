@@ -3,25 +3,56 @@ const axios = require("axios");
 
 exports.handler = async (event, context) => {
   console.log(JSON.stringify(event));
-  if (event.body) {
-    var body = JSON.parse(event.body);
-    var response = await axios.get(body.imageSource, {
+  if (event.queryStringParameters) {
+    if (
+      !event.queryStringParameters.imageSource ||
+      !event.queryStringParameters.imageFormat ||
+      !event.queryStringParameters.width ||
+      !event.queryStringParameters.height
+    ) {
+      return {
+        cookies: [],
+        isBase64Encoded: false,
+        statusCode: 400,
+        headers: {},
+        body: "",
+      };
+    }
+
+    var imageSource = event.queryStringParameters.imageSource;
+    var imageFormat = event.queryStringParameters.imageFormat;
+    var width = event.queryStringParameters.width;
+    var height = event.queryStringParameters.height;
+
+    // Get image from internet
+    var response = await axios.get(imageSource, {
       responseType: "arraybuffer",
     });
 
-    var file = await sharp(Buffer.from(response.data), {
+    var file = sharp(Buffer.from(response.data), {
       density: 5000,
-    })
-      .resize(body.width, body.height)
-      .png()
-      .toBuffer();
+    });
+
+    var contentType;
+    if (imageFormat === "png") {
+      file = file.png();
+      contentType = "image/png";
+    } else if (imageFormat === "jpeg") {
+      file = file.jpeg();
+      contentType = "image/jpeg";
+    } else {
+      file = file.png();
+      contentType = "image/png";
+    }
+
+    file = file.resize(width, height).toBuffer().toString("base64");
 
     return {
       cookies: [],
       isBase64Encoded: true,
       statusCode: 200,
-      headers: { "content-type": "image/png" },
-      body: file.toString("base64"),
+      headers: { "content-type": contentType },
+      body: file,
     };
   }
 };
