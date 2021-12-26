@@ -15,15 +15,9 @@ resource "aws_apigatewayv2_integration" "instance" {
   payload_format_version = "2.0"
 }
 
-resource "aws_apigatewayv2_route" "root" {
+resource "aws_apigatewayv2_route" "instance" {
   api_id    = aws_apigatewayv2_api.instance.id
   route_key = "GET /"
-  target    = "integrations/${aws_apigatewayv2_integration.instance.id}"
-}
-
-resource "aws_apigatewayv2_route" "root_star" {
-  api_id    = aws_apigatewayv2_api.instance.id
-  route_key = "GET /*"
   target    = "integrations/${aws_apigatewayv2_integration.instance.id}"
 }
 
