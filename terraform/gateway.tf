@@ -1,5 +1,5 @@
 resource "aws_apigatewayv2_api" "instance" {
-  name          = "api-gateway"
+  name          = "image-converter-api-gateway"
   protocol_type = "HTTP"
   cors_configuration {
     allow_origins = ["*"]
