@@ -30,7 +30,7 @@ exports.handler = async (event, context) => {
     });
 
     var file = sharp(Buffer.from(response.data), {
-      density: 5000,
+      density: 7000,
     });
 
     var contentType;
@@ -45,7 +45,9 @@ exports.handler = async (event, context) => {
       contentType = "image/png";
     }
 
-    file = (await file.resize(width, height).toBuffer()).toString("base64");
+    file = (
+      await file.resize(width, height, { fit: "fill" }).toBuffer()
+    ).toString("base64");
 
     return {
       cookies: [],
