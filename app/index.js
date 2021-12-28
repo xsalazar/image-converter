@@ -3,6 +3,15 @@ const axios = require("axios");
 
 exports.handler = async (event, context) => {
   console.log(JSON.stringify(event));
+
+  var errorReturnResponse = {
+    cookies: [],
+    isBase64Encoded: false,
+    statusCode: 400,
+    headers: {},
+    body: "",
+  };
+
   if (event.queryStringParameters) {
     if (
       !event.queryStringParameters.imageSource ||
@@ -10,19 +19,27 @@ exports.handler = async (event, context) => {
       !event.queryStringParameters.width ||
       !event.queryStringParameters.height
     ) {
-      return {
-        cookies: [],
-        isBase64Encoded: false,
-        statusCode: 400,
-        headers: {},
-        body: "",
-      };
+      return errorReturnResponse;
     }
 
     var imageSource = event.queryStringParameters.imageSource;
+
+    if (!imageSource.startsWith("https://twemoji.maxcdn.com")) {
+      return errorReturnResponse;
+    }
+
     var imageFormat = event.queryStringParameters.imageFormat;
     var width = parseInt(event.queryStringParameters.width);
+
+    if (isNaN(width) || width <= 0 || width > 16384) {
+      return errorReturnResponse;
+    }
+
     var height = parseInt(event.queryStringParameters.height);
+
+    if (isNaN(height) || height <= 0 || height > 16384) {
+      return errorReturnResponse;
+    }
 
     // Get image from internet
     var response = await axios.get(imageSource, {
