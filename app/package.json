@@ -4,6 +4,6 @@
   "main": "index.js",
   "dependencies": {
     "axios": "^0.25.0",
-    "sharp": "^0.30.0"
+    "sharp": "^0.30.1"
   }
 }
