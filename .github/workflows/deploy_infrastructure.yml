@@ -1,6 +1,9 @@
 name: Deploy Infrastructure
 
 on:
+  push:
+    paths:
+      - "terraform/**"
   workflow_dispatch:
 
 jobs:

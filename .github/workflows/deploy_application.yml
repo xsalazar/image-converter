@@ -1,6 +1,9 @@
 name: Deploy Application
 
 on:
+  push:
+    paths:
+      - "app/**"
   workflow_dispatch:
 
 jobs:
