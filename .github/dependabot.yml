@@ -1,10 +1,21 @@
 version: 2
 updates:
-  - package-ecosystem: 'npm'
-    directory: '/app'
+  # Main application
+  - package-ecosystem: "npm"
+    directory: "/app"
     labels:
-      - 'dependabot :robot:'
+      - "dependabot :robot:"
     reviewers:
-      - 'xsalazar'
+      - "xsalazar"
     schedule:
-      interval: 'daily'
+      interval: "daily"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    labels:
+      - "dependabot :robot:"
+    reviewers:
+      - "xsalazar"
+    schedule:
+      interval: "daily"
