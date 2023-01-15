@@ -24,7 +24,7 @@ exports.handler = async (event, context) => {
 
     var imageSource = event.queryStringParameters.imageSource;
 
-    if (!imageSource.startsWith("https://twemoji.maxcdn.com")) {
+    if (!imageSource.startsWith("https://cdn.jsdelivr.net/gh/twitter/")) {
       return errorReturnResponse;
     }
 
