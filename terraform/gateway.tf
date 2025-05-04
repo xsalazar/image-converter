@@ -1,5 +1,5 @@
 resource "aws_apigatewayv2_api" "instance" {
-  name          = "image-converter-api-gateway"
+  name          = "download-emoji-api-gateway"
   protocol_type = "HTTP"
   cors_configuration {
     allow_origins = ["https://downloademoji.dev"]

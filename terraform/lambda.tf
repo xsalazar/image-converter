@@ -1,5 +1,5 @@
 resource "aws_lambda_function" "instance" {
-  function_name = "image-converter"
+  function_name = "download-emoji"
   filename      = "${path.module}/dummy-lambda-package/lambda.zip" // Simple hello world application
   role          = aws_iam_role.instance.arn
   handler       = "index.handler"
