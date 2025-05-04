@@ -1,10 +1,14 @@
 {
   "image": "node:20",
-  "extensions": [
-    "esbenp.prettier-vscode",
-    "hashicorp.terraform",
-    "streetsidesoftware.code-spell-checker"
-  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "hashicorp.terraform",
+        "streetsidesoftware.code-spell-checker"
+      ]
+    }
+  },
   "features": {
     "ghcr.io/devcontainers/features/terraform": {
       "version": "1.10.2"
