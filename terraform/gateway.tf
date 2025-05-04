@@ -8,6 +8,26 @@ resource "aws_apigatewayv2_api" "instance" {
   }
 }
 
+resource "aws_apigatewayv2_api_mapping" "instance" {
+  api_id      = aws_apigatewayv2_api.instance.id
+  domain_name = aws_apigatewayv2_domain_name.instance.id
+  stage       = "$default"
+}
+
+resource "aws_apigatewayv2_domain_name" "instance" {
+  domain_name = "backend.downloademoji.dev"
+
+  domain_name_configuration {
+    certificate_arn = data.aws_acm_certificate.instance.arn
+    endpoint_type   = "REGIONAL"
+    security_policy = "TLS_1_2"
+  }
+}
+
+data "aws_acm_certificate" "instance" {
+  domain = "*.downloademoji.dev"
+}
+
 resource "aws_apigatewayv2_integration" "instance" {
   api_id                 = aws_apigatewayv2_api.instance.id
   integration_type       = "AWS_PROXY"
