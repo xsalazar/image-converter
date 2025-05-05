@@ -1,4 +1,4 @@
-# 🖼 Download Emoji Backend
+# 💾 Download Emoji Backend
 
 This repository holds both the Terraform infrastructure code as well as the simple Javascript application that runs inside the AWS Lambda function.
 
